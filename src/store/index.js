@@ -1,7 +1,11 @@
 import { createStore } from 'vuex'
+import patients from './modules/patients.module'
 
 export default createStore({
-  state: {
+  state() {
+    return {
+
+    }
   },
   getters: {
   },
@@ -10,5 +14,6 @@ export default createStore({
   actions: {
   },
   modules: {
+    patients
   }
 })

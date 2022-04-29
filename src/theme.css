@@ -132,6 +132,10 @@ hr {
     background: #eee;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .modal {
     position: fixed;
     top: 60px;
@@ -159,6 +163,7 @@ hr {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .modal-close {
@@ -167,6 +172,46 @@ hr {
     right: 20px;
     font-size: 2rem;
     cursor: pointer;
+}
+
+.form-control {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.form-control input,
+.form-control select {
+    font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
+    margin: 0;
+    outline: none;
+    border: 2px solid #ccc;
+    display: block;
+    width: 100%;
+    color: #2c3e50;
+    padding: 0.5rem 1.5rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.form-control label {
+    display: block;
+    margin: 0 0 0.3rem 0.3rem;
+    font-weight: 500;
+}
+
+.form-control input:active,
+.form-control input:focus {
+    transition: border 0.22s;
+    border: 2px solid #5344b0;
+}
+
+.form-control small {
+    color: #e53935;
+}
+
+.form-control.invalid input {
+    border-color: #e53935;
 }
 
 .card.marked {
@@ -178,7 +223,6 @@ hr {
     flex-direction: column;
     align-items: center;
 }
-
 /* strong,
 .bold {
     font-weight: 500;
@@ -250,35 +294,6 @@ h3 {
     padding-top: 5rem;
 }
 
-.form-control {
-    position: relative;
-    margin-bottom: 0.5rem;
-}
-
-.form-control input,
-.form-control select,
-.form-control textarea {
-    font-family: Inter, Roboto, Oxygen, Fira Sans, Helvetica Neue, sans-serif;
-    margin: 0;
-    outline: none;
-    border: 2px solid #ccc;
-    display: block;
-    width: 100%;
-    color: #2c3e50;
-    padding: 0.5rem 1.5rem;
-    border-radius: 3px;
-    font-size: 1rem;
-    resize: none;
-}
-
-.form-control small {
-    color: #e53935;
-}
-
-.form-control.invalid input {
-    border-color: #e53935;
-}
-
 .form-checkbox {
     margin-bottom: 1rem;
 }
@@ -291,18 +306,6 @@ h3 {
 
 .form-checkbox .checkbox input {
     margin-right: 1rem;
-}
-
-.form-control label {
-    display: block;
-    margin: 0 0 0.3rem 0.3rem;
-    font-weight: 500;
-}
-
-.form-control input:active,
-.form-control input:focus {
-    transition: border 0.22s;
-    border: 2px solid #42b983;
 }
 
 .list {

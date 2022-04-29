@@ -9,9 +9,12 @@
 <script>
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
+import { onMounted } from 'vue'
+import { useStore } from 'vuex'
 export default {
   setup() {
-    
+    const store = useStore()
+    onMounted( () => store.dispatch('patients/loadDefaultStore') )
   },
   components: { TheHeader, TheFooter }
 }
