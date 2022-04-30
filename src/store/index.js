@@ -3,9 +3,7 @@ import patients from './modules/patients.module'
 
 export default createStore({
   state() {
-    return {
-
-    }
+    return {}
   },
   getters: {
   },

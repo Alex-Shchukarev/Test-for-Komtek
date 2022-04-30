@@ -4,10 +4,10 @@
       <button class="btn primary" title="Создать нового пациента" @click="openCreator">Создать</button>
     </template>
     <patient-filter></patient-filter>
-    <patients-table :clients="patients"></patients-table>
+    <patients-table :patients="patients"></patients-table>
     <teleport to="body">
       <the-modal title="Карточка создания нового пациента" v-if="modal" @close="closeCreator">
-        <modal-body></modal-body>
+        <modal-body @created="closeCreator"></modal-body>
       </the-modal>
     </teleport>
   </app-page>
