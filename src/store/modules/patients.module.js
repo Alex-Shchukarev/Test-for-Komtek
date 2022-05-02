@@ -24,7 +24,8 @@ export default {
         },
         addPatient(state, patient) {
             const idx = state.patients[state.patients.length-1].id + 1
-            state.patients.push({...patient, id: idx })
+            const fullName = (patient.surname + ' ' + patient.firstName + ' ' + patient.fatherName).trim()
+            state.patients.push({ ...patient, id: idx, fullName })
             localStorage.setItem('hospital', JSON.stringify(state.patients))
         },
         deletePatient(state, id) {

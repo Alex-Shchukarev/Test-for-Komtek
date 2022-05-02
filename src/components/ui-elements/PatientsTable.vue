@@ -17,7 +17,7 @@
         </td>
         <td>{{ patient.surname }} {{ patient.firstName }} {{ patient.fatherName }}</td>
         <td>{{ new Date(patient.birthday).toLocaleDateString() }}</td>
-        <td>{{ patient.gender }}</td>
+        <td>{{ patient.gender === 'male' ? 'М' : 'Ж' }}</td>
         <td>{{ snilsFormatter(patient.snils) }}</td>
         <td>
           <router-link v-slot="{ navigate }" custom :to="{ name:'Patient', params: { id: patient.id } }">

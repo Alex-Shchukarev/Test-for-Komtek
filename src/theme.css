@@ -31,6 +31,9 @@ body {
     padding-right: 1rem;
     text-align: right;
     background-color: lightgrey;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .container {

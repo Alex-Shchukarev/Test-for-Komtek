@@ -3,7 +3,7 @@
     <template #header>
       <button class="btn primary" title="Создать нового пациента" @click="openCreator">Создать</button>
     </template>
-    <patient-filter></patient-filter>
+    <patient-filter v-model="filter"></patient-filter>
     <patients-table :patients="patients"></patients-table>
     <teleport to="body">
       <the-modal title="Карточка создания нового пациента" v-if="modal" @close="closeCreator">
@@ -25,13 +25,25 @@ export default {
   name: 'Home',
   setup() {
     const store = useStore()
-
-    const patients = computed( () => store.getters['patients/patients'])
     const modal = ref(false)
+    const filter = ref({})
+
+    const patients = computed( () => store.getters['patients/patients'].filter( p => {
+      if(filter.value.snils) {
+        return p.snils.includes(filter.value.snils)
+      } return p 
+    } )
+    .filter( p => {
+      if(filter.value.fullName) {
+        return p.fullName.includes(filter.value.fullName)
+      } return p
+    } )
+    )
     const openCreator = () => modal.value = true
     const closeCreator = () => modal.value = false
 
-    return { patients, modal, openCreator, closeCreator }
+
+    return { patients, modal, openCreator, closeCreator, filter }
   },
   components: {
     AppPage, PatientFilter, PatientsTable, TheModal, ModalBody

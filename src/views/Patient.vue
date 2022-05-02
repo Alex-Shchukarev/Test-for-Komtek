@@ -3,7 +3,7 @@
     <template #header><hr/></template>
     <p><strong>Фамилия Имя Отчество</strong>: {{ patient.surname }} {{ patient.firstName }} {{ patient.fatherName }}</p>
     <p><strong>Дата рождения:</strong>: {{ new Date(patient.birthday).toLocaleDateString() }}</p>
-    <p><strong>Пол</strong>: {{ patient.gender === 'M' ? 'Мужской' : 'Женский' }}</p>
+    <p><strong>Пол</strong>: {{ patient.gender === 'male' ? 'Мужской' : 'Женский' }}</p>
     <p><strong>СНИЛС</strong>: {{ snilsFormatter(patient.snils) }}</p>
     <div class="form-control-mini">
       <p><strong>Вес</strong>: {{ patient.weight }} кг&nbsp;</p>
