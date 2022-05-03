@@ -19,14 +19,14 @@ export default {
         const fullName = ref('')
         const snils = ref('')
 
-        const isActiveFilter = computed( () => fullName.value || snils.value)
-        watch([ fullName, snils ], values => {
-            emit('update:modelValue', {
+        const isActiveFilter = computed( () => fullName.value || snils.value) // Если пользователь начал вводить что-то, показываем кнопку сброса
+        watch([ fullName, snils ], values => { // наблюдаем за полями ввода, если пользователь начал вводить что-то, то
+            emit('update:modelValue', {        // эмитим объект с этими данными 
                 fullName: values[0],
                 snils: values[1]
             })
         })
-        const reset = () => {
+        const reset = () => {    // при нажатии очищаем поля ввода и убираем кнопку сброса
             fullName.value = ''
             snils.value = ''
         } 

@@ -22,8 +22,8 @@
         <div :class="[ 'form-control', { invalid: errorGender } ]">
             <label for="gender">Пол</label>
             <select id="gender" v-model="gender" @blur="hbGender">
-                <option value="М">Мужской</option>
-                <option value="Ж">Женский</option>
+                <option value="Мужской">Мужской</option>
+                <option value="Женский">Женский</option>
             </select>
             <small v-if="errorGender">{{ errorGender }}</small>
         </div>

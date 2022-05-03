@@ -21,6 +21,7 @@ import TheModal from '../components/TheModal.vue'
 import ModalBody from '../components/ui-elements/ModalBody.vue'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
+import { compareChar } from '../utils/compare-for-sort'
 export default {
   name: 'Home',
   setup() {
@@ -28,9 +29,9 @@ export default {
     const modal = ref(false)
     const filter = ref({})
 
-    const patients = computed( () => store.getters['patients/patients'].filter( p => {
-      if(filter.value.snils) {
-        return p.snils.includes(filter.value.snils)
+    const patients = computed( () => store.getters['patients/patients'].filter( p => { // фильтруем список пациентов, если в
+      if(filter.value.snils) {                              // полях ввода фильтра есть данные, если данных нет, то
+        return p.snils.includes(filter.value.snils)         // возвращаем весь список пациентов
       } return p 
     } )
     .filter( p => {
@@ -39,8 +40,8 @@ export default {
       } return p
     } )
     )
-    const openCreator = () => modal.value = true
-    const closeCreator = () => modal.value = false
+    const openCreator = () => modal.value = true       // открываем окно создания пациента
+    const closeCreator = () => modal.value = false     // закрываем окно создания пациента
 
 
     return { patients, modal, openCreator, closeCreator, filter }
