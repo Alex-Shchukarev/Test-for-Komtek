@@ -1,7 +1,9 @@
 <template>
   <app-page title="Карточка пациента" v-if="patient">
-    <template #header><hr/></template>
-    <p><strong>Фамилия Имя Отчество</strong>: {{ patient.surname }} {{ patient.firstName }} {{ patient.fatherName }}</p>
+    <template #header>
+      <small class="modal-close" @click="closeCard">&times;</small>
+    </template>
+    <p><strong>Фамилия Имя Отчество</strong>: {{ patient.fullName }}</p>
     <p><strong>Дата рождения:</strong>: {{ new Date(patient.birthday).toLocaleDateString() }}</p>
     <p><strong>Пол</strong>: {{ patient.gender === 'Мужской' ? 'Мужской' : 'Женский' }}</p>
     <p><strong>СНИЛС</strong>: {{ snilsFormatter(patient.snils) }}</p>
@@ -21,17 +23,22 @@
 
 <script>
 import AppPage from '../components/ui-elements/AppPage.vue'
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { snilsFormatter } from '../utils/snils-formate'
 export default {
   setup() {
     const store = useStore()
     const route = useRoute()
+    const router = useRouter()
     const id = route.params.id
     const patient = computed(() => store.getters[ 'patients/patient' ])
-    return { patient: patient.value[ id ], snilsFormatter }
+    
+    const closeCard = () => router.push('/')
+
+    return { patient: patient.value[ id ], snilsFormatter, closeCard }
   },
   components: { AppPage }
 }

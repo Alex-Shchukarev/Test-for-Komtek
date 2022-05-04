@@ -24,6 +24,7 @@ export default {
         },
         addPatient(state, patient) {
             const idx = state.patients[state.patients.length-1].id + 1
+            patient = Object.fromEntries(Object.entries(patient).map(([ key, value ]) => [key, value ?? '']))
             const fullName = (patient.surname + ' ' + patient.firstName + ' ' + patient.fatherName).trim()
             state.patients.push({ ...patient, id: idx, fullName })
             localStorage.setItem('hospital', JSON.stringify(state.patients))
@@ -33,7 +34,9 @@ export default {
             localStorage.setItem('hospital', JSON.stringify(state.patients))
         },
         changePatient(state, newData) {
-            console.log(newData)
+            const updatedPatient = state.patients.find(p => p.id === newData.id)
+            Object.assign(updatedPatient, newData)
+            localStorage.setItem('hospital', JSON.stringify(state.patients))
         }
         
     },
@@ -47,8 +50,8 @@ export default {
         removePatient({commit}, id) {
             commit('deletePatient', id)
         },
-        updatePatient({commit}, updateData) {
-            commit('changePatient', updateData)
+        updatePatient({commit}, newData) {
+            commit('changePatient', newData)
         },
         // patientById(_, id) {
         //     const patient = store.getters['patient'](id)

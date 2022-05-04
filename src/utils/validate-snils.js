@@ -1,7 +1,9 @@
 
 export function validateSnils(snils) {
 	let isCorrect = false
-    if (/[^0-9]/.test(snils)) {
+	if(snils === undefined) {
+		isCorrect = true
+	} else if (/[^0-9]/.test(snils)) {
         return isCorrect
 	} else if (parseInt(snils) <= 1001998) {
         return isCorrect

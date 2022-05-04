@@ -174,9 +174,9 @@ hr {
 }
 
 .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+    position: relative;
+    top: 0px;
+    right: 10px;
     font-size: 2rem;
     cursor: pointer;
 }
@@ -227,6 +227,11 @@ hr {
 .form-control.invalid input,
 .form-control.invalid select {
     border-color: #e53935;
+}
+
+.edit-form {
+    display: flex;
+    align-items: center;
 }
 
 .card.marked {

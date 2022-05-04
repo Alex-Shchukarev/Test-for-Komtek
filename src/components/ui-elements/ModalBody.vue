@@ -58,7 +58,6 @@ export default {
     setup(_, { emit }) {
         const store = useStore()
         const submit = values => {
-            console.log(values)
             store.dispatch('patients/createPatient', values)
             emit('created')
         }

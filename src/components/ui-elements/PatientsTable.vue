@@ -13,7 +13,7 @@
     <tbody>
       <tr v-for="patient in patients" :key="patient.id">
         <td>
-          <img src="../../assets/edit.svg" title="Редактировать" alt="Редактировать"/>
+          <img src="../../assets/edit.svg" title="Редактировать" alt="Редактировать" @click="edit(patient.id)"/>
         </td>
         <td>{{ patient.fullName }}</td>
         <td>{{ new Date(patient.birthday).toLocaleDateString() }}</td>
@@ -35,18 +35,23 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import { snilsFormatter } from '../../utils/snils-formate'
 import order from '../../utils/compare-for-sort'
 export default {
   props: [ 'patients' ],
   setup(props) {
     const store = useStore()
+    const router = useRouter()
     const { orderItems, orderState } = order()
+    
     const isClients = computed( () => props.patients.length === 0 )  // проверяем наличие списка пациентов в БД
     const removePatient = id => {                                    // удаляем пациента
       store.dispatch('patients/removePatient', id)
     }
-    return { isClients, removePatient, snilsFormatter, orderItems, orderState }
+    const edit = id => router.push(`/editor/patient${id}`)
+    
+    return { isClients, removePatient, snilsFormatter, orderItems, orderState, edit }
   },
 }
 </script>
