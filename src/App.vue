@@ -14,7 +14,8 @@ import { useStore } from 'vuex'
 export default {
   setup() {
     const store = useStore()
-    onMounted( () => store.dispatch('patients/loadDefaultStore') )
+    onMounted(() => store.dispatch('patients/loadPatients'))
+    onMounted(() => store.dispatch('consults/loadConsults'))
   },
   components: { TheHeader, TheFooter }
 }

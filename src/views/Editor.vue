@@ -61,7 +61,7 @@
 import AppPage from '../components/ui-elements/AppPage.vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { snilsFormatter } from '../utils/snils-formate'
 import { cleanFormat } from '../utils/clean-obj'
 import { useEditPatient } from '../use/patient-editor'
@@ -70,7 +70,6 @@ export default {
         const store = useStore()
         const router = useRouter()
         const route = useRoute()
-        const fullName = ref()
         const id = route.params.id
         const patient = computed(() => store.getters[ 'patients/patient' ])
 

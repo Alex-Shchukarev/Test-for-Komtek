@@ -21,7 +21,6 @@ import TheModal from '../components/TheModal.vue'
 import ModalBody from '../components/ui-elements/ModalBody.vue'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import { compareChar } from '../utils/compare-for-sort'
 export default {
   name: 'Home',
   setup() {

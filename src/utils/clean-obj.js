@@ -25,7 +25,3 @@ export function cleanFormat(obj) {
             }
     return result
 }
-
-export function cleanFields() {
-    return
-}
