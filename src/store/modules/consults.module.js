@@ -13,7 +13,7 @@ export default {
         },
         consultsPatient(_, getters) {
             const result = {}
-            getters.consults.forEach(c => result[ c.id ] = c)
+            getters.consults.forEach(c => result[ c.patientId ] = c)
             return result
         }
     },
@@ -21,38 +21,47 @@ export default {
         load(_) {
             localStorage.setItem('consults', JSON.stringify(consultsData))
         },
-        // addPatient(state, patient) {
-        //     const idx = state.patients[state.patients.length-1].id + 1
-        //     patient = Object.fromEntries(Object.entries(patient).map(([ key, value ]) => [key, value ?? '']))
-        //     const fullName = (patient.surname + ' ' + patient.firstName + ' ' + patient.fatherName).trim()
-        //     state.patients.push({ ...patient, id: idx, fullName })
-        //     localStorage.setItem('hospital', JSON.stringify(state.patients))
-        // },
-        deleteConsult(state, payload) {
-            const idx = state.consults.find(c => c.patientId === payload.consultsPatient.patientId)
-                        .patientConsults.findIndex(c => c.id === payload.consultId)
-            payload.consultsPatient.patientConsults.splice(idx, 1)
+        addConsult(state, consult) {
+            const consultsPatient = state.consults.find(c => c.patientId == consult.id).patientConsults
+            const idx = consultsPatient[consultsPatient.length-1].id + 1
+            consultsPatient.push({...consult, id: idx})
             localStorage.setItem('consults', JSON.stringify(state.consults))
         },
-        // changePatient(state, newData) {
-        //     const updatedPatient = state.patients.find(p => p.id === newData.id)
-        //     Object.assign(updatedPatient, newData)
-        //     localStorage.setItem('hospital', JSON.stringify(state.patients))
-        //}
+        deleteConsult(state, payload) {
+            const idx = state.consults.find(c => c.patientId === payload.patientId)
+                        .patientConsults.findIndex(c => c.id === payload.consultId)
+            payload.patientConsults.splice(idx, 1)
+            localStorage.setItem('consults', JSON.stringify(state.consults))
+        },
+        changeConsult(state, newData) {
+            const patientId = String(newData.id)
+            const updateForConsult = state.consults.find(p => p.patientId == patientId[0])
+                                        .patientConsults.find(c => c.id === newData.id)
+            Object.assign(updateForConsult, newData)
+            localStorage.setItem('consults', JSON.stringify(state.consults))
+        },
+        deletePatientConsults(state, patientId) {
+            const idx = state.consults.findIndex(p => p.patientId === patientId)
+            state.consults.splice(idx, 1)
+            localStorage.setItem('consults', JSON.stringify(state.consults))
+        }
         
     },
     actions: {
         loadConsults({commit}) {
             commit('load')
         },
-        // createPatient({commit}, patient) {
-        //     commit('addPatient', patient)
-        // },
+        createConsult({commit}, consult) {
+            commit('addConsult', consult)
+        },
         removeConsult({commit}, payload) {
             commit('deleteConsult', payload)
         },
-        // updatePatient({commit}, newData) {
-        //     commit('changePatient', newData)
-        // }
+        updateConsult({commit}, newData) {
+            commit('changeConsult', newData)
+        },
+        removePatientConsults({commit}, patientId) {
+            commit('deletePatientConsults', patientId)
+        }
     }
 }

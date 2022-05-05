@@ -7,7 +7,7 @@
     <patients-table :patients="patients"></patients-table>
     <teleport to="body">
       <the-modal title="Карточка создания нового пациента" v-if="modal" @close="closeCreator">
-        <modal-body @created="closeCreator"></modal-body>
+        <modal-body-patient @created="closeCreator"></modal-body-patient>
       </the-modal>
     </teleport>
   </app-page>
@@ -18,7 +18,7 @@ import AppPage from '../components/ui-elements/AppPage.vue'
 import PatientFilter from '../components/ui-elements/PatientFilter.vue'
 import PatientsTable from '../components/ui-elements/PatientsTable.vue'
 import TheModal from '../components/TheModal.vue'
-import ModalBody from '../components/ui-elements/ModalBody.vue'
+import ModalBodyPatient from '../components/ui-elements/ModalBodyPatient.vue'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 export default {
@@ -46,7 +46,7 @@ export default {
     return { patients, modal, openCreator, closeCreator, filter }
   },
   components: {
-    AppPage, PatientFilter, PatientsTable, TheModal, ModalBody
+    AppPage, PatientFilter, PatientsTable, TheModal, ModalBodyPatient
   }
 }
 </script>

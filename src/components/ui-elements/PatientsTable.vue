@@ -48,6 +48,7 @@ export default {
     const isClients = computed( () => props.patients.length === 0 )  // проверяем наличие списка пациентов в БД
     const removePatient = id => {                                    // удаляем пациента
       store.dispatch('patients/removePatient', id)
+      store.dispatch('consults/removePatientConsults', id)
     }
     const edit = id => router.push(`/editor/patient${id}`)
     

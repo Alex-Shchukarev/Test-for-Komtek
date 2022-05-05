@@ -27,31 +27,40 @@
                 </tr>
             </tbody>
         </table>
+        <teleport to="body">
+            <the-modal title="Карточка создания новой консультации" v-if="modal" @close="closeCreator">
+                <modal-body-consult @created="closeCreator"></modal-body-consult>
+            </the-modal>
+        </teleport>
     </div>
 </template>
 
 <script>
+import TheModal from '../TheModal.vue'
+import ModalBodyConsult from './ModalBodyConsult.vue'
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
-import { computed, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 export default {
     props: [ 'consults' ],
     setup(props) {
         const store = useStore()
-        const route = useRoute()
-        //console.log(props.consults)
+        const router = useRouter()
+        const modal = ref(false)
+    
+        const openCreator = () => modal.value = true
+        const closeCreator = () => modal.value = false 
         const removeConsult = id => {
             const consult = {
-                consultsPatient: props.consults,
+                ...props.consults,
                 consultId: id,
             }
             store.dispatch('consults/removeConsult', consult)
         }
-        watch(props.consults, val => console.log(val))
-        //const id = props.id
-        // const consultsPatient = computed(() => store.getters[ 'consults/consult' ])
+        const edit = id => router.push(`/editor/consult${id}`)
         
-        return { removeConsult }
+        return { modal, openCreator, closeCreator, removeConsult, edit }
     },
+    components: { TheModal, ModalBodyConsult }
 }
 </script>

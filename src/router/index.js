@@ -14,11 +14,19 @@ const routes = [
   },
   {
     path: '/editor/patient:id?',
-    name: 'Editor',
+    name: 'EditorPatient',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Editor.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditorPatient.vue')
+  },
+  {
+    path: '/editor/consult:id?',
+    name: 'EditorConsult',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditorConsult.vue')
   }
 ]
 
