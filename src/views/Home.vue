@@ -19,7 +19,7 @@ import PatientFilter from '../components/ui-elements/PatientFilter.vue'
 import PatientsTable from '../components/ui-elements/PatientsTable.vue'
 import TheModal from '../components/TheModal.vue'
 import ModalBodyPatient from '../components/ui-elements/ModalBodyPatient.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 export default {
   name: 'Home',
@@ -27,7 +27,6 @@ export default {
     const store = useStore()
     const modal = ref(false)
     const filter = ref({})
-
     const patients = computed( () => store.getters['patients/patients'].filter( p => { // фильтруем список пациентов, если в
       if(filter.value.snils) {                              // полях ввода фильтра есть данные, если данных нет, то
         return p.snils.includes(filter.value.snils)         // возвращаем весь список пациентов

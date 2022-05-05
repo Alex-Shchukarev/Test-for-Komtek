@@ -18,8 +18,9 @@ export default {
         }
     },
     mutations: {
-        load(_) {
+        load(state) {
             localStorage.setItem('patients', JSON.stringify(patientsData))
+            state.patients = JSON.parse(localStorage.getItem('patients'))
         },
         addPatient(state, patient) {
             const idx = state.patients[state.patients.length-1].id + 1

@@ -18,8 +18,9 @@ export default {
         }
     },
     mutations: {
-        load(_) {
+        load(state) {
             localStorage.setItem('consults', JSON.stringify(consultsData))
+            state.consults = JSON.parse(localStorage.getItem('consults'))
         },
         addConsult(state, consult) {
             const consultsPatient = state.consults.find(c => c.patientId == consult.id).patientConsults
